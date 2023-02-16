@@ -5,38 +5,30 @@
 <Section --background="var(--sk-back-1)">
 	<div class="container">
 		<div class="features">
-			<h2><span>features? we got 'em.</span></h2>
+			<h2><span>기능? 갖추어져 있습니다.</span></h2>
 			<p class="wall">
-				Mix and match <strong>prerendered</strong> pages for maximum performance with dynamic
-				<strong>server-side rendering</strong> for maximum flexibility. Turn your app into a
-				client-rendered
-				<strong>PWA</strong> with a single line of code, for the whole thing or just one page. Use
-				accessible <strong>client-side routing</strong> with automatic
-				<strong>preloading</strong> for slick, instantaneous navigation that doesn't reload your
-				entire page (and your analytics, and all that other junk). Protect your users with automatic
-				<strong>CSRF protection</strong>
-				and easy-to-use
-				<strong>Content Security Policy</strong> configuration. Keep your secrets to yourself with
-				advanced <strong>environment variable</strong> handling. Handle errors gracefully and
-				<strong>securely</strong>. Load data
-				<strong>directly from your database</strong>
-				and connect your back end to your front end with <strong>type-safe</strong> data loading and
-				built-in <strong>form actions</strong>
-				that work with or without JavaScript. <strong>Co-exist</strong> with other client-side
-				routing frameworks on the same page. Add service workers for <strong>offline</strong>
-				support. Generate <strong>AMP-compliant</strong>
-				pages if you really have to. Build complex UIs with unusually powerful
-				<strong>filesystem-based routes</strong>. Nested layouts? Duh. Learn
-				<strong>web standards</strong>
-				that work across environments. Integrate with <strong>Tailwind</strong>
-				and <strong>Playwright</strong> and <strong>Vitest</strong> and <strong>Storybook</strong>
-				and, well, whatever you want. Build <strong>libraries</strong> as well as apps.
-				<strong>Deploy anywhere</strong> with adapters.
+				유연성을 극대화하기 위해 동적 <strong>서버측 렌더링</strong>과 함께 최대 성능을 위해
+				<strong>사전 렌더링된</strong> 페이지를 혼합하고 일치시킵니다.
+				전체 또는 한 페이지에 대해 한 줄의 코드를 사용하여 앱을 클라이언트 렌더링 <strong>PWA</strong>로 전환합니다.
+				전체 페이지(및 분석 및 기타 정크)를 다시 로드하지 않는 매끄럽고 즉각적인 탐색을 위해 자동 <strong>사전 로드</strong>와 함께
+				액세스 가능한 <strong>클라이언트측 라우팅</strong>을 사용합니다. 자동 <strong>CSRF 보호</strong> 및
+				사용하기 쉬운 <strong>콘텐츠 보안 정책</strong> 구성으로 사용자를 보호하십시오.
+				고급 <strong>환경 변수</strong> 처리를 통해 <strong>비밀</strong>을 유지하십시오.
+				오류를 우아하고 안전하게 처리합니다. 데이터베이스에서 <strong>직접 데이터를 로드</strong>하고
+				JavaScript를 사용하거나 사용하지 않고 작동하는 <strong>형식이 안전한</strong> 데이터 로드 및
+				기본 제공 <strong>양식 작업</strong>을 사용하여 백엔드를 프런트 엔드에 연결합니다.
+				동일한 페이지에서 다른 클라이언트 측 라우팅 프레임워크와 <strong>공존</strong>합니다.
+				<strong>오프라인</strong> 지원을 위해 서비스 워커를 추가합니다.
+				꼭 필요한 경우 <strong>AMP 호환</strong> 페이지를 생성하세요.
+				매우 강력한 <strong>파일 시스템 기반 경로</strong>로 복잡한 UI를 구축합니다.
+				중첩 레이아웃? 이런, 여러 환경에서 작동하는 <strong>웹 표준</strong>을 배웁니다.
+				<strong>Tailwind</strong>, <strong>Playwright</strong>, <strong>Vitest</strong> 및
+				<strong>Storybook</strong>과 통합하고 무엇이든 원하는 대로 통합하세요.
+				<strong>라이브러리</strong>와 앱을 빌드합니다. 어댑터를 사용하여 <strong>어디에나 배포하십시오</strong>.
 			</p>
 
 			<p>
-				SvelteKit is the framework that
-				<strong>grows with you</strong>, whatever you end up building.
+				SvelteKit은 무엇을 구축하든 <strong>함께 성장하는</strong> 프레임워크입니다.
 			</p>
 		</div>
 	</div>

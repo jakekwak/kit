@@ -4,19 +4,19 @@ title: Types
 
 ## Public types
 
-The following types can be imported from `@sveltejs/kit`:
+다음 유형은 `@sveltejs/kit`에서 가져올 수 있습니다.
 
 > TYPES: @sveltejs/kit
 
 ## Private types
 
-The following are referenced by the public types documented above, but cannot be imported directly:
+다음은 위에 문서화된 공개 형식에서 참조하지만 직접 가져올 수는 없습니다.
 
 > TYPES: Private types
 
 ## Generated types
 
-The `RequestHandler` and `Load` types both accept a `Params` argument allowing you to type the `params` object. For example this endpoint expects `foo`, `bar` and `baz` params:
+`RequestHandler` 및 `Load` 유형은 둘 다 `params` 개체를 입력할 수 있도록 하는 `Params` 인수를 허용합니다. 예를 들어 이 끝점에는 `foo`, `bar` 및 `baz` 매개변수가 필요합니다.
 
 ```js
 /// file: src/routes/[foo]/[bar]/[baz]/+page.server.js
@@ -31,9 +31,9 @@ export async function GET({ params }) {
 }
 ```
 
-Needless to say, this is cumbersome to write out, and less portable (if you were to rename the `[foo]` directory to `[qux]`, the type would no longer reflect reality).
+말할 필요도 없이 이것은 작성하기 번거롭고 이식성이 떨어집니다(`[foo]` 디렉토리의 이름을 `[qux]`로 바꾸면 유형이 더 이상 현실을 반영하지 않습니다).
 
-To solve this problem, SvelteKit generates `.d.ts` files for each of your endpoints and pages:
+이 문제를 해결하기 위해 SvelteKit은 각 엔드포인트 및 페이지에 대해 `.d.ts` 파일을 생성합니다.
 
 ```ts
 /// file: .svelte-kit/types/src/routes/[foo]/[bar]/[baz]/$types.d.ts
@@ -50,7 +50,7 @@ export type PageServerLoad = Kit.ServerLoad<RouteParams>;
 export type PageLoad = Kit.Load<RouteParams>;
 ```
 
-These files can be imported into your endpoints and pages as siblings, thanks to the [`rootDirs`](https://www.typescriptlang.org/tsconfig#rootDirs) option in your TypeScript configuration:
+이러한 파일은 TypeScript 구성의 [`rootDirs`](https://www.typescriptlang.org/tsconfig#rootDirs) 옵션 덕분에 끝점과 페이지에 형제로 가져올 수 있습니다.
 
 ```js
 /// file: src/routes/[foo]/[bar]/[baz]/+page.server.js
@@ -96,13 +96,13 @@ export async function load({ params, fetch }) {
 }
 ```
 
-> For this to work, your own `tsconfig.json` or `jsconfig.json` should extend from the generated `.svelte-kit/tsconfig.json` (where `.svelte-kit` is your [`outDir`](configuration#outdir)):
+> 이것이 작동하려면 자신의 `tsconfig.json` 또는 `jsconfig.json`이 생성된 `.svelte-kit/tsconfig.json`에서 확장되어야 합니다(여기서 `.svelte-kit`은 [`outDir`](/docs/configuration#outdir)):
 >
 >     { "extends": "./.svelte-kit/tsconfig.json" }
 
 ### Default tsconfig.json
 
-The generated `.svelte-kit/tsconfig.json` file contains a mixture of options. Some are generated programmatically based on your project configuration, and should generally not be overridden without good reason:
+생성된 `.svelte-kit/tsconfig.json` 파일에는 여러 옵션이 포함되어 있습니다. 일부는 프로젝트 구성에 따라 프로그래밍 방식으로 생성되며 일반적으로 합당한 이유 없이 재정의하면 안 됩니다.
 
 ```json
 /// file: .svelte-kit/tsconfig.json
@@ -120,7 +120,7 @@ The generated `.svelte-kit/tsconfig.json` file contains a mixture of options. So
 }
 ```
 
-Others are required for SvelteKit to work properly, and should also be left untouched unless you know what you're doing:
+다른 것들은 SvelteKit이 제대로 작동하는 데 필요하며 수행 중인 작업을 알지 못하는 경우 그대로 두어야 합니다.
 
 ```json
 /// file: .svelte-kit/tsconfig.json

@@ -5,8 +5,8 @@
 
 <Section --background="var(--background-1)">
 	<p class="definition">
-		<em>/ˈsvɛlt/</em> <span class="adjective">adjective</span>
-		<span class="description">attractively thin, graceful and stylish</span>
+		<em>/ˈsvɛlt/</em> <span class="adjective">형용사</span>
+		<span class="description"><strong>스벨트</strong> 매력적으로 날씬하고, 우아하며 세련된</span>
 	</p>
 
 	<div class="grid" style="--columns: 3">
@@ -19,49 +19,50 @@
 					rel="noreferrer"
 					href="https://www.offerzen.com/community/svelte-origins-documentary"
 				>
-					Watch the full Svelte Origins documentary
+					전체 Svelte Origins 다큐멘터리를 시청
 				</a>
 			</p>
 		</div>
 
 		<div>
 			<p>
-				SvelteKit is built on Svelte, a UI framework that uses a compiler to let you write
-				breathtakingly concise components that do minimal work in the browser, using languages you
-				already know — HTML, CSS and JavaScript. <strong>It's a love letter to web development.</strong>
+				SvelteKit은 HTML, CSS 및 JavaScript와 같은 이미 알고 있는 언어를 사용하여 브라우저에서
+				최소한의 작업을 수행하는 놀랍도록 간결한 구성 요소를 작성할 수 있도록 컴파일러를 사용하는
+				UI 프레임워크인 Svelte를 기반으로 합니다. <strong>웹 개발에 대한 러브레터입니다.</strong>
 			</p>
 
 			<p>
-				But don't take our word for it. Developers consistently rank Svelte as the framework they're
+				그러나 우리의 말을 믿지 마십시오. 개발자들은 지속적으로 Svelte를 가장 사용하고 싶은 프레임워크
 				<a
 					target="_blank"
 					rel="noreferrer"
 					href="https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-web-frameworks"
 				>
-					most
+					가장
+				</a>
+				<a
+				target="_blank"
+				rel="noreferrer"
+				href="https://twitter.com/Rich_Harris/status/1589675637195042817"
+				>
+					사용하고
 				</a>
 				<a
 					target="_blank"
 					rel="noreferrer"
 					href="https://tsh.io/state-of-frontend/#which-of-the-following-frameworks-would-you-like-to-learn-in-the-future"
 				>
-					excited
+					싶은
 				</a>
 				<a
 					target="_blank"
 					rel="noreferrer"
 					href="https://2021.stateofjs.com/en-US/libraries/front-end-frameworks/"
 				>
-					about
+					프레임워크
 				</a>
+				로 꼽습니다.
 
-				<a
-					target="_blank"
-					rel="noreferrer"
-					href="https://twitter.com/Rich_Harris/status/1589675637195042817"
-				>
-					using</a
-				>.
 			</p>
 		</div>
 	</div>

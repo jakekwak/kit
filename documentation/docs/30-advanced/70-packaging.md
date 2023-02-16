@@ -2,23 +2,23 @@
 title: Packaging
 ---
 
-> `svelte-package` is currently experimental. Non-backward compatible changes may occur in any future release.
+> `svelte-package`는 현재 실험적입니다. 이전 버전과 호환되지 않는 변경 사항은 향후 릴리스에서 발생할 수 있습니다.
 
-You can use SvelteKit to build apps as well as component libraries, using the `@sveltejs/package` package (`npm create svelte` has an option to set this up for you).
+SvelteKit을 사용하여 `@sveltejs/package` 패키지(`npm create svelte`에는 이를 설정하는 옵션이 있음)를 사용하여 구성 요소 라이브러리뿐만 아니라 앱을 빌드할 수 있습니다.
 
-When you're creating an app, the contents of `src/routes` is the public-facing stuff; [`src/lib`](modules#$lib) contains your app's internal library.
+앱을 만들 때 `src/routes`의 내용은 공개 대상입니다. [`src/lib`](/docs/modules#$lib)에는 앱의 내부 라이브러리가 포함되어 있습니다.
 
-A component library has the exact same structure as a SvelteKit app, except that `src/lib` is the public-facing bit. `src/routes` might be a documentation or demo site that accompanies the library, or it might just be a sandbox you use during development.
+구성 요소 라이브러리는 `src/lib`가 공용 비트라는 점을 제외하면 SvelteKit 앱과 정확히 동일한 구조를 가집니다. `src/routes`는 라이브러리와 함께 제공되는 문서 또는 데모 사이트이거나 개발 중에 사용하는 샌드박스일 수 있습니다.
 
-Running the `svelte-package` command from `@sveltejs/package` will take the contents of `src/lib` and generate a `package` directory (which can be [configured](configuration)) containing the following:
+`@sveltejs/package`에서 `svelte-package` 명령을 실행하면 `src/lib`의 내용을 가져오고 다음을 포함하는 `package` 디렉토리([구성](/docs/configuration) 가능)를 생성합니다.
 
-- All the files in `src/lib`, unless you [configure](configuration) custom `include`/`exclude` options. Svelte components will be preprocessed, TypeScript files will be transpiled to JavaScript.
-- Type definitions (`d.ts` files) which are generated for Svelte, JavaScript and TypeScript files. You need to install `typescript >= 4.0.0` for this. Type definitions are placed next to their implementation, hand-written `d.ts` files are copied over as is. You can [disable generation](configuration), but we strongly recommend against it — people using your library might use TypeScript, for which they require these type definition files.
-- A `package.json` copied from the project root with all fields except `"scripts"`, `"publishConfig.directory"` and `"publishConfig.linkDirectory"`. The `"dependencies"` field is included, which means you should add packages that you only need for your documentation or demo site to `"devDependencies"`. A `"type": "module"` and an `"exports"` field will be added if it's not defined in the original file.
+- 사용자 지정 `include`/`exclude` 옵션을 [구성](/docs/configuration)하지 않는 한 `src/lib`의 모든 파일. Svelte 구성 요소는 사전 처리되고 TypeScript 파일은 JavaScript로 변환됩니다.
+- Svelte, JavaScript 및 TypeScript 파일에 대해 생성되는 유형 정의(`d.ts` 파일). 이를 위해서는 `typescript >= 4.0.0`을 설치해야 합니다. 유형 정의는 구현 옆에 배치되며 손으로 작성한 `d.ts` 파일은 그대로 복사됩니다. [생성을 비활성화](/docs/configuration)할 수 있지만 권장하지 않습니다. — 라이브러리를 사용하는 사람들은 이러한 유형 정의 파일이 필요한 TypeScript를 사용할 수 있습니다.
+- `"scripts"`, `"publishConfig.directory"` 및 `"publishConfig.linkDirectory"`를 제외한 모든 필드가 있는 프로젝트 루트에서 복사된 `package.json`. `"dependencies"` 필드가 포함되어 있으며, 이는 문서 또는 데모 사이트에만 필요한 패키지를 `"devDependencies"`에 추가해야 함을 의미합니다. 원본 파일에 정의되지 않은 경우 `"type": "module"` 및 `"exports"` 필드가 추가됩니다.
 
-The `"exports"` field contains the package's entry points. By default, all files in `src/lib` will be treated as an entry point unless they start with (or live in a directory that starts with) an underscore, but you can [configure](configuration) this behaviour. If you have a `src/lib/index.js` or `src/lib/index.svelte` file, it will be treated as the package root.
+`"exports"` 필드에는 패키지의 진입점이 포함됩니다. 기본적으로 `src/lib`의 모든 파일은 밑줄로 시작하지 않는 한(또는 밑줄로 시작하는 디렉토리에 있지 않는 한) 진입점으로 취급되지만 이 동작을 [구성](/docs/configuration)할 수 있습니다. `src/lib/index.js` 또는 `src/lib/index.svelte` 파일이 있는 경우 패키지 루트로 취급됩니다.
 
-For example, if you had a `src/lib/Foo.svelte` component and a `src/lib/index.js` module that re-exported it, a consumer of your library could do either of the following:
+예를 들어 `src/lib/Foo.svelte` 구성 요소와 이를 다시 내보낸 `src/lib/index.js` 모듈이 있는 경우 라이브러리 소비자는 다음 중 하나를 수행할 수 있습니다.
 
 ```js
 // @filename: ambient.d.ts
@@ -38,26 +38,27 @@ declare module 'your-library/Foo.svelte';
 import Foo from 'your-library/Foo.svelte';
 ```
 
-> You should avoid using [SvelteKit-specific modules](modules) like `$app` in your packages unless you intend for them to only be consumable by other SvelteKit projects. E.g. rather than using `import { browser } from '$app/environment'` you could use [`import.meta.env.SSR`](https://vitejs.dev/guide/env-and-mode.html#env-variables) to make the library available to all Vite-based projects or better yet use [Node conditional exports](https://nodejs.org/api/packages.html#conditional-exports) to make it work for all bundlers. You may also wish to pass in things like the current URL or a navigation action as a prop rather than relying directly on `$app/stores`, `$app/navigation`, etc. Writing your app in this more generic fashion will also make it easier to setup tools for testing, UI demos and so on.
+> 다른 SvelteKit 프로젝트에서만 사용할 수 있도록 의도하지 않는 한 패키지에서 `$app`과 같은 [SvelteKit 관련 모듈](/docs/modules)을 사용하지 않아야 합니다. 예를 들어 `import { browser } from '$app/environment'`를 사용하는 대신 [`import.meta.env.SSR`](https://vitejs.dev/guide/env-and-mode.html#env-variables)을 사용하여 모든 Vite 기반 프로젝트에서 라이브러리를 사용할 수 있도록 하거나 노드 조건부 내보내기를 사용하여 모든 번들러에서 작동하도록 할 수 있습니다. `$app/stores`, `$app/navigation` 등에 직접 의존하지 않고 현재 URL이나 탐색 작업과 같은 항목을 소품으로 전달할 수도 있습니다. 이렇게 보다 일반적인 방식으로 앱을 작성하면 테스트, UI 데모 등을 위한 도구를 더 쉽게 설정할 수 있습니다.
 
 ## Options
 
-`svelte-package` accepts the following options:
+`svelte-package`는 다음 옵션을 허용합니다.
 
-- `-w`/`--watch` — watch files in `src/lib` for changes and rebuild the package
+- `-w`/`--watch` — `src/lib`의 파일에서 변경 사항을 확인하고 패키지를 다시 빌드합니다.
 
 ## Publishing
 
-To publish the generated package:
+생성된 패키지를 게시하려면:
 
 ```sh
 npm publish ./package
 ```
 
-The `./package` above is referring to the directory name generated, change accordingly if you configure a custom [`package.dir`](configuration).
+위의 `./package`는 생성된 디렉토리 이름을 참조하며 사용자 정의 [`package.dir`](/docs/configuration)을 구성하는 경우 그에 따라 변경하십시오.
 
 ## Caveats
 
-All relative file imports need to be fully specified, adhering to Node's ESM algorithm. This means you cannot import the file `src/lib/something/index.js` like `import { something } from './something`, instead you need to import it like this: `import { something } from './something/index.js`. If you are using TypeScript, you need to import `.ts` files the same way, but using a `.js` file ending, _not_ a `.ts` file ending (this isn't under our control, the TypeScript team has made that decision). Setting `"moduleResolution": "NodeNext"` in your `tsconfig.json` or `jsconfig.json` will help you with this.
+모든 상대 파일 가져오기는 Node의 ESM 알고리즘을 준수하여 완전히 지정되어야 합니다. 즉, `./something`에서 `import { something }`과 같이 `src/lib/something/index.js` 파일을 가져올 수 없으며 대신 다음과 같이 가져와야 합니다: `import { something } from './something/index.js`
+TypeScript를 사용하는 경우 동일한 방식으로 `.ts` 파일을 가져와야 하지만 `.ts` 파일로 끝나는 파일이(이것은 우리가 통제할 수 없으며 TypeScript 팀이 결정을 내렸습니다) _아닌_ `.js` 파일로 끝나는 파일을 사용해야 합니다. `tsconfig.json` 또는 `jsconfig.json`에서 `"moduleResolution": "NodeNext"`를 설정하면 도움이 됩니다.
 
-This is a relatively experimental feature and is not yet fully implemented. All files except Svelte files (preprocessed) and TypeScript files (transpiled to JavaScript) are copied across as-is.
+이것은 상대적으로 실험적인 기능이며 아직 완전히 구현되지 않았습니다. Svelte 파일(전처리됨) 및 TypeScript 파일(JavaScript로 트랜스파일됨)을 제외한 모든 파일은 있는 그대로 복사됩니다.

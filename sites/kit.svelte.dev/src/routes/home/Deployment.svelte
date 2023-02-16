@@ -14,15 +14,15 @@
 
 <Section --background="var(--background-1)">
 	<div class="grid" style="--columns: 3">
-		<h2>deploy anywhere</h2>
+		<h2>어디에나 배포하십시오</h2>
 		<div class="blurb">
 			<p>
-				Export static HTML files. Run your own Node server. Deploy code to the edge of the world. If
-				a platform runs JavaScript, it runs SvelteKit — in some cases with <strong
-					>zero configuration</strong
-				>.
+				정적 HTML 파일을 내보냅니다. 자신의 노드 서버를 실행하십시오.
+				세계의 에지에 코드를 배포합니다.
+				플랫폼이 JavaScript를 실행하는 경우 경우에 따라
+				<strong>제로 구성</strong>으로 SvelteKit을 실행합니다.
 			</p>
-			<p>Want to try deploying somewhere else? Swap out your adapter with a single line of code.</p>
+			<p>다른 곳에 배포하고 싶습니까? 한 줄의 코드로 어댑터를 교체하십시오.</p>
 		</div>
 	</div>
 
@@ -116,7 +116,7 @@
 				height="100%"
 				alt="Dynamically rendered map of the world, centered on the user's location"
 			/>
-			<span> rendered on the edge, just for you </span>
+			<span> 에지에 렌더링, 당신을 위해서 </span>
 		</div>
 	</div>
 </Section>
