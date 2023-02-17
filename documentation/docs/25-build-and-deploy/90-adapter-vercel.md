@@ -2,13 +2,13 @@
 title: Vercel
 ---
 
-To deploy to Vercel, use [`adapter-vercel`](https://github.com/sveltejs/kit/tree/master/packages/adapter-vercel).
+Vercel에 배포하려면 [`adapter-vercel`](https://github.com/sveltejs/kit/tree/master/packages/adapter-vercel)을 사용하세요.
 
-This adapter will be installed by default when you use [`adapter-auto`](adapter-auto), but adding it to your project allows you to specify Vercel-specific options.
+이 어댑터는 [`adapter-auto`](adapter-auto)를 사용할 때 기본적으로 설치되지만 프로젝트에 추가하면 Vercel 관련 옵션을 지정할 수 있습니다.
 
 ## Usage
 
-Install with `npm i -D @sveltejs/adapter-vercel`, then add the adapter to your `svelte.config.js`:
+`npm i -D @sveltejs/adapter-vercel`로 설치한 다음 `svelte.config.js`에 어댑터를 추가합니다.
 
 ```js
 // @errors: 2307 2345
@@ -26,9 +26,9 @@ export default {
 
 ## Deployment configuration
 
-To control how your routes are deployed to Vercel as functions, you can specify deployment configuration, either through the option shown above or with [`export const config`](/docs/page-options#config) inside `+server.js`, `+page(.server).js` and `+layout(.server).js` files.
+경로가 기능으로 Vercel에 배포되는 방식을 제어하려면 위에 표시된 옵션을 통해 또는 `+server.js`, `+page(.server).js` 및 `+layout(.server).js` 파일내에서 [`export const config`](/docs/page-options#config)를 사용하여 배포 구성을 지정할 수 있습니다.
 
-For example you could deploy some parts of your app as [Edge Functions](https://vercel.com/docs/concepts/functions/edge-functions)...
+예를 들어 앱의 일부를 [Edge Functions](https://vercel.com/docs/concepts/functions/edge-functions)로 배포할 수 있습니다...
 
 ```js
 /// file: about/+page.js
@@ -38,7 +38,7 @@ export const config = {
 };
 ```
 
-...and others as [Serverless Functions](https://vercel.com/docs/concepts/functions/serverless-functions) (note that by specifying `config` inside a layout, it applies to all child pages):
+...및 기타 [서버리스 기능](https://vercel.com/docs/concepts/functions/serverless-functions)(레이아웃 내부에 `config`를 지정하면 모든 하위 페이지에 적용됨):
 
 ```js
 /// file: admin/+layout.js
@@ -48,28 +48,28 @@ export const config = {
 };
 ```
 
-The following options apply to all functions:
+다음 옵션은 모든 기능에 적용됩니다.
 
-- `runtime`: `'edge'`, `'nodejs16.x'` or `'nodejs18.x'`. By default, the adapter will select `'nodejs16.x'` or `'nodejs18.x'` depending on the Node version your project is configured to use on the Vercel dashboard
-- `regions`: an array of [edge network regions](https://vercel.com/docs/concepts/edge-network/regions) (defaulting to `["iad1"]` for serverless functions) or `'all'` if `runtime` is `edge` (its default). Note that multiple regions for serverless functions are only supported on Enterprise plans
-- `split`: if `true`, causes a route to be deployed as an individual function. If `split` is set to `true` at the adapter level, all routes will be deployed as individual functions
+- `runtime`: `'edge'`, `'nodejs16.x'` 또는 `'nodejs18.x'`. 기본적으로 어댑터는 프로젝트가 Vercel 대시보드에서 사용하도록 구성된 노드 버전에 따라 `'nodejs16.x'` 또는 `'nodejs18.x'`를 선택합니다.
+- `regions`: [에지 네트워크 영역](https://vercel.com/docs/concepts/edge-network/regions)의 배열(기본값은 서버리스 기능의 경우 `["iad1"]`) 또는 `runtime`이 `edge`(기본값)인 경우 `'all'`입니다. 서버리스 기능을 위한 여러 지역은 엔터프라이즈 플랜에서만 지원됩니다.
+- `split`: `true`인 경우 경로가 개별 기능으로 배포됩니다. 어댑터 수준에서 `split`이 `true`로 설정되면 모든 경로가 개별 기능으로 배포됩니다.
 
-Additionally, the following options apply to edge functions:
-- `envVarsInUse`: an array of environment variables that should be accessible inside the edge function
-- `external`: an array of dependencies that esbuild should treat as external when bundling functions. This should only be used to exclude optional dependencies that will not run outside Node
+또한 다음 옵션이 에지 함수에 적용됩니다.
+- `envVarsInUse`: 에지 함수 내에서 액세스할 수 있어야 하는 환경 변수의 배열
+- `external`: 함수를 묶을 때 esbuild가 외부로 취급해야 하는 종속성 배열입니다. 노드 외부에서 실행되지 않는 선택적 종속성을 제외하는 데에만 사용해야 합니다.
 
-And the following option apply to serverless functions:
-- `memory`: the amount of memory available to the function. Defaults to `1024` Mb, and can be decreased to `128` Mb or [increased](https://vercel.com/docs/concepts/limits/overview#serverless-function-memory) in 64Mb increments up to `3008` Mb on Pro or Enterprise accounts
-- `maxDuration`: maximum execution duration of the function. Defaults to `10` seconds for Hobby accounts, `60` for Pro and `900` for Enterprise
-- `isr`: configuration Incremental Static Regeneration, described below
+다음 옵션은 서버리스 기능에 적용됩니다.
+- `memory`: 함수에 사용할 수 있는 메모리의 양입니다. 기본값은 `1024` Mb이며 Pro 또는 Enterprise 계정에서 `128` Mb로 줄이거나 64Mb 단위로 최대 `3008` Mb까지 [늘릴](https://vercel.com/docs/concepts/limits/overview#serverless-function-memory) 수 있습니다.
+- `maxDuration`: 함수의 최대 실행 시간. Hobby 계정의 경우 `10`초, Pro의 경우 `60`, Enterprise의 경우 `900`으로 기본 설정됩니다.
+- `isr`: 증분 정적 재생 구성, 아래 설명
 
-If your functions need to access data in a specific region, it's recommended that they be deployed in the same region (or close to it) for optimal performance.
+함수가 특정 지역의 데이터에 액세스해야 하는 경우 최적의 성능을 위해 동일한 지역(또는 가까운 지역)에 배포하는 것이 좋습니다.
 
 ## Incremental Static Regeneration
 
-Vercel supports [Incremental Static Regeneration](https://vercel.com/docs/concepts/incremental-static-regeneration/overview) (ISR), which provides the performance and cost advantages of prerendered content with the flexibility of dynamically rendered content.
+Vercel은 [Incremental Static Regeneration](https://vercel.com/docs/concepts/incremental-static-regeneration/overview)(ISR)을 지원하여 동적으로 렌더링된 콘텐츠의 유연성과 함께 사전 렌더링된 콘텐츠의 성능 및 비용 이점을 제공합니다.
 
-To add ISR to a route, include the `isr` property in your `config` object:
+경로에 ISR을 추가하려면 `config` 개체에 `isr` 속성을 포함합니다.
 
 ```js
 /// file: blog/[slug]/+page.server.js
@@ -84,32 +84,32 @@ import { BYPASS_TOKEN } from '$env/static/private';
 
 export const config = {
 	isr: {
-		// Expiration time (in seconds) before the cached asset will be re-generated by invoking the Serverless Function.
-		// Setting the value to `false` means it will never expire.
+		// 서버리스 기능을 호출하여 캐시된 자산이 다시 생성되기 전의 만료 시간(초)입니다.
+		// 값을 'false'로 설정하면 만료되지 않습니다.
 		expiration: 60,
 
-		// Option group number of the asset. Assets with the same group number will all be re-validated at the same time.
+		// 자산의 옵션 그룹 번호입니다. 동일한 그룹 번호를 가진 자산은 모두 동시에 재검증됩니다.
 		group: 1,
 
-		// Random token that can be provided in the URL to bypass the cached version of the asset, by requesting the asset
+		// 자산을 요청하여 자산의 캐시된 버전을 우회하기 위해 URL에 제공할 수 있는 임의 토큰
 		// with a __prerender_bypass=<token> cookie.
 		//
-		// Making a `GET` or `HEAD` request with `x-prerender-revalidate: <token>` will force the asset to be re-validated.
+		// `x-prerender-revalidate: <token>`으로 `GET` 또는 `HEAD` 요청을 하면 자산이 강제로 재검증됩니다.
 		bypassToken: BYPASS_TOKEN,
 
-		// List of query string parameter names that will be cached independently.
-		// If an empty array, query values are not considered for caching.
-		// If `undefined` each unique query value is cached independently
+		// 독립적으로 캐시될 쿼리 문자열 매개변수 이름 목록입니다.
+		// 빈 배열인 경우 쿼리 값은 캐싱에 고려되지 않습니다.
+		// `undefined` 경우 각각의 고유한 쿼리 값이 독립적으로 캐시됩니다.
 		allowQuery: ['search']
 	}
 };
 ```
 
-The `expiration` property is required; all others are optional.
+`expiration` 속성이 필요합니다. 다른 모든 것은 선택 사항입니다.
 
 ## Environment variables
 
-Vercel makes a set of [deployment-specific environment variables](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) available. Like other environment variables, these are accessible from `$env/static/private` and `$env/dynamic/private` (sometimes — more on that later), and inaccessible from their public counterparts. To access one of these variables from the client:
+Vercel은 사용 가능한 [배포 관련 환경 변수](https://vercel.com/docs/concepts/projects/environment-variables#system-environment-variables) 세트를 만듭니다. 다른 환경 변수와 마찬가지로 이러한 변수는 `$env/static/private` 및 `$env/dynamic/private`(때때로 — 나중에 자세히 설명)에서 액세스할 수 있으며 공개 대상에서는 액세스할 수 없습니다. 클라이언트에서 이러한 변수 중 하나에 액세스하려면:
 
 ```js
 // @errors: 2305
@@ -134,20 +134,20 @@ export function load() {
 <p>This staging environment was deployed from {data.deploymentGitBranch}.</p>
 ```
 
-Since all of these variables are unchanged between build time and run time when building on Vercel, we recommend using `$env/static/private` — which will statically replace the variables, enabling optimisations like dead code elimination — rather than `$env/dynamic/private`. If you're deploying with `edge: true` you must either use `$env/static/private` or populate the `envVarsInUse` configuration.
+이러한 모든 변수는 Vercel에서 빌드할 때 빌드 시간과 런타임 사이에 변경되지 않으므로 `$env/static/private`를 사용하는 것이 좋습니다. 이는 `$env/dynamic/private`보다 변수를 정적으로 대체하여 데드 코드 제거와 같은 최적화를 가능하게 합니다. . `edge: true`로 배포하는 경우 `$env/static/private`를 사용하거나 `envVarsInUse` 구성을 채워야 합니다.
 
 ## Notes
 
 ### Vercel functions
 
-If you have Vercel functions contained in the `api` directory at the project's root, any requests for `/api/*` will _not_ be handled by SvelteKit. You should implement these as [API routes](https://kit.svelte.dev/docs/routing#server) in your SvelteKit app instead, unless you need to use a non-JavaScript language in which case you will need to ensure that you don't have any `/api/*` routes in your SvelteKit app.
+프로젝트 루트의 `api` 디렉토리에 포함된 Vercel 함수가 있는 경우 `/api/*`에 대한 요청은 SvelteKit에서 처리하지 _않습니다_. SvelteKit에 `/api/*` 경로가 없는지 확인해야 하는 경우 자바스크립트가 아닌 언어를 사용해야 하는 경우가 아니면 SvelteKit 앱에서 [API 경로](https://kit.svelte.dev/docs/routing#server)로 대신 구현해야 합니다.
 
 ### Node version
 
-Projects created before a certain date will default to using Node 14, while SvelteKit requires Node 16 or later. You can [change the Node version in your project settings](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/node-js#node.js-version).
+특정 날짜 이전에 생성된 프로젝트는 기본적으로 노드 14를 사용하는 반면 SvelteKit에는 노드 16 이상이 필요합니다. [프로젝트 설정에서 노드 버전을 변경](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/node-js#node.js-version)할 수 있습니다.
 
 ## Troubleshooting
 
 ### Accessing the file system
 
-You can't access the file system through methods like `fs.readFileSync` in Serverless/Edge environments. If you need to access files that way, do that during building the app through [prerendering](https://kit.svelte.dev/docs/page-options#prerender). If you have a blog for example and don't want to manage your content through a CMS, then you need to prerender the content (or prerender the endpoint from which you get it) and redeploy your blog everytime you add new content.
+Serverless/Edge 환경에서는 `fs.readFileSync`와 같은 방법을 통해 파일 시스템에 액세스할 수 없습니다. 그런 방식으로 파일에 액세스해야 하는 경우 [사전 렌더링](https://kit.svelte.dev/docs/page-options#prerender)을 통해 앱을 빌드하는 동안 액세스해야 합니다. 예를 들어 블로그가 있고 CMS를 통해 콘텐츠를 관리하지 않으려면 콘텐츠를 사전 렌더링(또는 콘텐츠를 가져오는 엔드포인트를 사전 렌더링)하고 새 콘텐츠를 추가할 때마다 블로그를 다시 배포해야 합니다.

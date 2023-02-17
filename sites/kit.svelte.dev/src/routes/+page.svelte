@@ -10,11 +10,11 @@
 </script>
 
 <svelte:head>
-	<title>SvelteKit • Web development, streamlined</title>
+	<title>SvelteKit • 효율적이고 군더더기 없는 깔끔한 웹 개발</title>
 
 	<meta name="twitter:title" content="SvelteKit" />
-	<meta name="twitter:description" content="Web development, streamlined" />
-	<meta name="description" content="SvelteKit is the official Svelte application framework" />
+	<meta name="twitter:description" content="효율적이고 군더더기 없는 깔끔한 웹 개발" />
+	<meta name="description" content="SvelteKit는 공식 Svelte 애플리케이션 프레임워크입니다" />
 </svelte:head>
 
 <div class="home">
@@ -30,9 +30,9 @@
 
 	<footer>
 		<p>
-			SvelteKit is <a target="_blank" rel="noreferrer" href="https://github.com/sveltejs/kit"
-				>free and open source software</a
-			> released under the MIT license.
+			SvelteKit은 <a target="_blank" rel="noreferrer" href="https://github.com/sveltejs/kit"
+			>프리 오픈소스 소프트웨어</a
+		>로 MIT 라이선스로 출시되었습니다.
 		</p>
 	</footer>
 </div>
